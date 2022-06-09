@@ -19,16 +19,45 @@
             </tr>
             <tr>
                 <!-- TODO #2: Complete the View Jobs By Category Table. -->
+	            
+								<!-- Option 1 -->
+<!--                <td>-->
+<!--	                <ul>-->
+<!--		                <li>-->
+<!--			                <a th:href="@{/list/jobs(column='all')}">View all</a>-->
+<!--		                </li>-->
+<!--	                </ul>-->
+<!--                </td> -->
 
-                <td></td> <!-- Feel free to remove or modify this element if necessary. -->
+<!--	            <td th:each="category : ${tableChoices}">-->
+<!--		            <ul>-->
+<!--			            <li th:each="item : ${category.value}">-->
+<!--				            <a th:href="@{/list/jobs(column=${category.key},value=${item})}" th:text="${item}"></a>-->
+<!--			            </li>-->
+<!--		            </ul>-->
+<!--	            </td>-->
+	
+	
+	            <!-- Option 2 -->
+	            <td th:each="category : ${tableChoices}">
+		            <th:block th:switch="${category.getKey()}">
+			            <ul>
+				            <li th:case="'all'">
+					            <a th:href="@{/list/jobs(column=${category.key})}">View all</a>
+				            </li>
+			            </ul>
+			            <th:block th:case="*">
+				            <ul>
+					            <li th:each="item : ${category.value}">
+						            <a th:href="@{/list/jobs(column=${category.key},value=${item})}" th:text="${item}"></a>
+					            </li>
+				            </ul>
+			            </th:block>
+		            </th:block>
+	            </td>
+	           
 
-                <td th:each="category : ${tableChoices}">
-                    <ul>
-                        <li th:each="item : ${category.value}">
-                            <a th:href="@{/list/jobs(column=${category.key},value=${item})}" th:text="${item}"></a>
-                        </li>
-                    </ul>
-                </td>
+
             </tr>
         </table>
 
