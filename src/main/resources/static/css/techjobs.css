@@ -37,6 +37,10 @@ table.job-listing td:last-child {
     width: 80%;
 }
 
+td.row-header {
+    font-style: italic
+}
+
 label {
     margin-right: 15px;
 }
